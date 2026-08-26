@@ -35,6 +35,8 @@ a{color:var(--brand)}
 .tab{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:10px 18px;border-radius:999px;font-weight:700;font-size:.95rem;cursor:pointer;box-shadow:var(--shadow-sm);transition:all .15s}
 .tab:hover{border-color:var(--brand2)}
 .tab.active{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-color:transparent}
+a.tab.tab-ext{text-decoration:none;color:var(--brand-d);display:inline-flex;align-items:center}
+a.tab.tab-ext:hover{background:#f2fafc;border-color:var(--brand2)}
 .panel{display:none}
 .panel.active{display:block;animation:fade .25s}
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
@@ -130,6 +132,15 @@ footer{border-top:1px solid var(--line);margin-top:40px;padding-top:22px;font-si
 footer .fx{display:flex;gap:20px;flex-wrap:wrap;justify-content:space-between}
 footer a{color:var(--brand)}
 .srcnote{font-size:.75rem;color:var(--muted);margin-top:10px}
+/* ====== EMBEBIDO (iframe) ====== */
+.embedbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.embedbar .btn{border:1px solid var(--line);background:var(--panel);color:var(--brand-d);padding:8px 14px;border-radius:999px;font-weight:700;font-size:.85rem;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all .15s}
+.embedbar .btn:hover{background:#f2fafc;border-color:var(--brand2)}
+.embedwrap{position:relative;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:var(--shadow-sm)}
+.embedwrap iframe{display:block;width:100%;height:78vh;min-height:560px;border:0}
+.embedwrap.fs iframe{height:100vh}
+.embedwrap .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:10px;color:var(--muted);font-size:.9rem;background:var(--panel)}
+@media(max-width:760px){.embedwrap iframe{height:70vh;min-height:460px}}
 </style>
 </head>
 <body>
@@ -151,6 +162,8 @@ footer a{color:var(--brand)}
     <button class="tab active" data-tab="home">🏠 Inicio</button>
     <button class="tab" data-tab="match">🎯 Journal Match</button>
     <button class="tab" data-tab="apc">💰 Explorador APC</button>
+    <button class="tab" data-tab="mbe">🧮 Calculadora MBE</button>
+    <a class="tab tab-ext" href="https://jbarbozameca.github.io/publicacionestau/" target="_blank" rel="noopener">📄 Publicaciones Tau ↗</a>
   </nav>
 
   <!-- ============ INICIO ============ -->
@@ -169,6 +182,17 @@ footer a{color:var(--brand)}
           <h3>Explorador APC</h3>
           <p>Visualiza y compara los costos de publicación (APC) de miles de revistas: rangos de precio, cuartiles, exenciones para países en desarrollo y más.</p>
         </div>
+        <div class="tool" onclick="goTab('mbe')">
+          <div class="ic">🧮</div>
+          <h3>Calculadora de Medicina Basada en Evidencia</h3>
+          <p>10 módulos: desenlaces binarios (RR, OR, RD, NNT), continuos (MD, SMD), supervivencia, precisión diagnóstica, ROC, metaanálisis, tamaño de muestra, concordancia y conversiones.</p>
+        </div>
+        <a class="tool" href="https://jbarbozameca.github.io/publicacionestau/" target="_blank" rel="noopener">
+          <div class="ic">📄</div>
+          <h3>Publicaciones Tau</h3>
+          <p>Portal de transparencia editorial: consulta por tu nombre el estado de los manuscritos del programa de revisiones sistemáticas y metaanálisis (2024-2026). Se actualiza cada lunes.</p>
+          <span class="extlbl">Abrir portal ▸</span>
+        </a>
         <a class="tool" href="https://jbarbozameca.github.io/observatorio-bibliometrico-del-peru/" target="_blank" rel="noopener">
           <div class="ic">📚</div>
           <h3>Observatorio Bibliométrico del Perú</h3>
@@ -203,12 +227,6 @@ footer a{color:var(--brand)}
           <div class="ic">✅</div>
           <h3>Checklist de publicación</h3>
           <p>Guías paso a paso PRISMA, CONSORT, STROBE y carta al editor.</p>
-          <span class="soonlbl">Próximamente</span>
-        </div>
-        <div class="tool soon">
-          <div class="ic">📊</div>
-          <h3>Calculadoras estadísticas</h3>
-          <p>Tamaño muestral, heterogeneidad y tamaños de efecto para meta-análisis.</p>
           <span class="soonlbl">Próximamente</span>
         </div>
         <div class="tool soon">
@@ -416,6 +434,24 @@ footer a{color:var(--brand)}
     </div>
   </section>
 
+  <!-- ============ CALCULADORA MBE (EMBEBIDA) ============ -->
+  <section class="panel" id="panel-mbe">
+    <div class="card">
+      <h2>🧮 Calculadora de Medicina Basada en Evidencia</h2>
+      <p style="font-size:.9rem;color:var(--muted);margin-top:-8px">10 módulos: desenlaces binarios (RR, OR, RD, NNT), continuos (MD, SMD), supervivencia, precisión diagnóstica, curvas ROC, metaanálisis, tamaño de muestra, concordancia y conversiones. La herramienta se ejecuta dentro del portal.</p>
+      <div class="embedbar">
+        <button class="btn" type="button" id="mbe-fs">⛶ Pantalla completa</button>
+        <button class="btn" type="button" id="mbe-reload">↻ Reiniciar calculadora</button>
+        <a class="btn" href="https://jbarbozameca.github.io/medicinabasadaenevidencia/#m-bin" target="_blank" rel="noopener">↗ Abrir en pestaña nueva</a>
+      </div>
+      <div class="embedwrap" id="mbe-wrap">
+        <div class="ph" id="mbe-ph"><span class="spin"></span>Cargando calculadora…</div>
+        <iframe id="mbe-frame" title="Calculadora de Medicina Basada en Evidencia" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+      <p class="srcnote">Si la calculadora no carga dentro del portal (por restricciones del navegador), usa el botón «Abrir en pestaña nueva».</p>
+    </div>
+  </section>
+
   <div id="loadbox" class="loading"><span class="spin"></span>Cargando base de datos de 32,193 revistas…</div>
 
   <footer>
@@ -435,6 +471,8 @@ footer a{color:var(--brand)}
       </div>
       <div>
         <b style="color:var(--ink)">Herramientas Tau</b><br>
+        <a href="https://jbarbozameca.github.io/medicinabasadaenevidencia/#m-bin" target="_blank" rel="noopener">🧮 Calculadora de Medicina Basada en Evidencia</a><br>
+        <a href="https://jbarbozameca.github.io/publicacionestau/" target="_blank" rel="noopener">📄 Publicaciones Tau</a><br>
         <a href="https://jbarbozameca.github.io/observatorio-bibliometrico-del-peru/" target="_blank" rel="noopener">📚 Observatorio Bibliométrico del Perú</a><br>
         <a href="https://jbarbozameca.github.io/triviasystematicreview/" target="_blank" rel="noopener">🧪 Trivia de Revisiones Sistemáticas</a><br>
         <a href="https://jbarbozameca.github.io/doctorado_unac_busqueda_sistematica/" target="_blank" rel="noopener">🔎 Trivia de Búsqueda Sistemática</a><br>
@@ -518,13 +556,39 @@ fetch('data/journals.json')
 
 /* ================= TABS ================= */
 document.getElementById('tabs').addEventListener('click',e=>{
-  const b=e.target.closest('.tab'); if(!b)return; goTab(b.dataset.tab);
+  const b=e.target.closest('.tab'); if(!b||!b.dataset.tab)return; goTab(b.dataset.tab);
 });
 function goTab(t){
   document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab===t));
   document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id==='panel-'+t));
+  if(t==='mbe')loadMBE();
   window.scrollTo({top:document.getElementById('tabs').offsetTop-10,behavior:'smooth'});
 }
+
+/* ========= CALCULADORA MBE EMBEBIDA (carga diferida) ========= */
+const MBE_URL='https://jbarbozameca.github.io/medicinabasadaenevidencia/#m-bin';
+function loadMBE(){
+  const f=document.getElementById('mbe-frame');
+  if(!f||f.dataset.loaded)return;
+  f.dataset.loaded='1';
+  f.addEventListener('load',()=>{const ph=document.getElementById('mbe-ph');if(ph)ph.style.display='none';});
+  f.src=MBE_URL;
+}
+document.getElementById('mbe-reload').addEventListener('click',()=>{
+  const f=document.getElementById('mbe-frame'),ph=document.getElementById('mbe-ph');
+  if(ph)ph.style.display='';
+  f.dataset.loaded='1'; f.src='https://jbarbozameca.github.io/medicinabasadaenevidencia/?r='+Date.now()+'#m-bin';
+});
+document.getElementById('mbe-fs').addEventListener('click',()=>{
+  const w=document.getElementById('mbe-wrap');
+  if(document.fullscreenElement){document.exitFullscreen();}
+  else if(w.requestFullscreen){w.requestFullscreen();}
+});
+document.addEventListener('fullscreenchange',()=>{
+  const w=document.getElementById('mbe-wrap');
+  if(w)w.classList.toggle('fs',document.fullscreenElement===w);
+});
+if(location.hash==='#mbe')goTab('mbe');
 
 /* ================= HELPERS ================= */
 const STOP=new Set(('a an and are as at be by for from in into is it of on or that the to with study studies effect effects analysis analyses review reviews systematic meta trial trials randomized randomised controlled clinical efficacy safety effectiveness permanent medication versus vs outcome outcomes patient patients adult adults treatment treatments management comparison comparative prospective retrospective cohort placebo blind multicenter multicentre pilot evaluation assessment impact role using based associated association among during after before new novel approach case report reports series protocol results result methods method aim aims objective objectives background conclusion conclusions el la los las de del y en un una para con sobre entre efecto efectos revision sistematica ensayo estudio pacientes tratamiento').split(' '));

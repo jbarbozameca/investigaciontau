@@ -122,6 +122,9 @@ canvas{max-width:100%}
 a.tool{display:block;text-decoration:none;color:inherit}
 .extlbl{display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ok);background:var(--ok-bg);border-radius:999px;padding:2px 10px;margin-top:6px}
 .cta.yt{background:#e62117;color:#fff;margin-left:8px}
+.cta.prem{background:linear-gradient(135deg,#f7d774,#d4a017);color:#3a2a00;margin-left:8px}
+.tool.prem{border-color:#e3c15a;background:linear-gradient(160deg,#fffdf4,#fbf1cf)}
+.tool.prem .extlbl{color:#7a5a00;background:#f7e7a8}
 
 .note{background:var(--warn-bg);border:1px solid #f3dfb5;border-radius:12px;padding:12px 16px;font-size:.83rem;color:#6b4a08}
 .loading{text-align:center;padding:48px;color:var(--muted);font-weight:600}
@@ -154,6 +157,7 @@ footer a{color:var(--brand)}
     <p class="sub" style="font-size:.85rem">Investigador Distinguido RENACYT · Docente Investigador TC, Vicerrectorado de Investigación, Universidad Señor de Sipán · Miembro Cochrane — USIL afiliado a INS</p>
     <a class="cta" href="https://investigaciontau.com/cursos-online/" target="_blank" rel="noopener">🎓 Cursos de Investigación Tau ▸</a>
     <a class="cta yt" href="https://www.youtube.com/@JoshuanJBarboza" target="_blank" rel="noopener">▶ Canal de YouTube</a>
+    <a class="cta prem" href="https://jbarbozameca.github.io/youtubetau/" target="_blank" rel="noopener">⭐ Aula Virtual Premium ▸</a>
   </div>
 </div>
 
@@ -163,11 +167,13 @@ footer a{color:var(--brand)}
     <button class="tab" data-tab="match">🎯 Journal Match</button>
     <button class="tab" data-tab="apc">💰 Explorador APC</button>
     <button class="tab" data-tab="mbe">🧮 Calculadora MBE</button>
+    <button class="tab" data-tab="ia">🤖 Banco de IA</button>
     <a class="tab tab-ext" href="https://jbarbozameca.github.io/publicacionestau/" target="_blank" rel="noopener">📄 Publicaciones Tau ↗</a>
     <a class="tab tab-ext" href="https://jbarbozameca.github.io/clinicaltrials/" target="_blank" rel="noopener">🧬 Simulador de Ensayos Clínicos ↗</a>
     <a class="tab tab-ext" href="https://jbarbozameca.github.io/riskofbias/" target="_blank" rel="noopener">🚦 Evaluador de Riesgo de Sesgo ↗</a>
     <a class="tab tab-ext" href="https://jbarbozameca.github.io/predatoryjournals/" target="_blank" rel="noopener">🛡️ Detector de Revistas Predatorias ↗</a>
     <a class="tab tab-ext" href="https://jbarbozameca.github.io/searchstrategy/" target="_blank" rel="noopener">🧭 Constructor de Estrategias de Búsqueda ↗</a>
+    <a class="tab tab-ext" href="https://jbarbozameca.github.io/youtubetau/" target="_blank" rel="noopener">⭐ Miembros Premium ↗</a>
   </nav>
 
   <!-- ============ INICIO ============ -->
@@ -190,6 +196,11 @@ footer a{color:var(--brand)}
           <div class="ic">🧮</div>
           <h3>Calculadora de Medicina Basada en Evidencia</h3>
           <p>10 módulos: desenlaces binarios (RR, OR, RD, NNT), continuos (MD, SMD), supervivencia, precisión diagnóstica, ROC, metaanálisis, tamaño de muestra, concordancia y conversiones.</p>
+        </div>
+        <div class="tool" onclick="goTab('ia')">
+          <div class="ic">🤖</div>
+          <h3>Banco de IA para Investigación</h3>
+          <p>144 plataformas con inteligencia artificial clasificadas en 15 categorías según la etapa del artículo científico en que intervienen, con tipo de acceso (gratis, freemium, de pago, institucional) y alertas de uso ético.</p>
         </div>
         <a class="tool" href="https://jbarbozameca.github.io/publicacionestau/" target="_blank" rel="noopener">
           <div class="ic">📄</div>
@@ -250,6 +261,12 @@ footer a{color:var(--brand)}
           <h3>Canal de YouTube</h3>
           <p>Videos y tutoriales sobre investigación, revisiones sistemáticas, meta-análisis y publicación científica.</p>
           <span class="extlbl">Ver canal ▸</span>
+        </a>
+        <a class="tool prem" href="https://jbarbozameca.github.io/youtubetau/" target="_blank" rel="noopener">
+          <div class="ic">⭐</div>
+          <h3>Tau Premium Membership · Aula Virtual</h3>
+          <p>Área exclusiva para miembros Premium de YouTube y miembros Gold de Tau: cursos grabados por sesiones (Revisiones Sistemáticas y Meta-análisis, Estadística con R, Redacción y Publicación Científica, De cero a la tesis), seguimiento de las sesiones vistas y solicitud de certificado al terminar cada curso.</p>
+          <span class="extlbl">Entrar al aula ▸</span>
         </a>
         <div class="tool soon">
           <div class="ic">✅</div>
@@ -474,6 +491,22 @@ footer a{color:var(--brand)}
     </div>
   </section>
 
+  <section class="panel" id="panel-ia">
+    <div class="card">
+      <h2>🤖 Banco de IA para Investigación</h2>
+      <p style="font-size:.9rem;color:var(--muted);margin-top:-8px">144 plataformas con inteligencia artificial en 15 categorías, organizadas por la etapa del trabajo científico en que intervienen. Filtra por tipo de acceso y revisa las alertas de uso ético (ICMJE, COPE, WAME). El banco se ejecuta dentro del portal.</p>
+      <div class="embedbar">
+        <button class="btn" type="button" id="ia-fs">⛶ Pantalla completa</button>
+        <a class="btn" href="https://jbarbozameca.github.io/bancoia/" target="_blank" rel="noopener">↗ Abrir en pestaña nueva</a>
+      </div>
+      <div class="embedwrap" id="ia-wrap">
+        <div class="ph" id="ia-ph"><span class="spin"></span>Cargando banco de IA…</div>
+        <iframe id="ia-frame" title="Banco de IA para Investigación" loading="lazy" allowfullscreen></iframe>
+      </div>
+      <p class="srcnote">Los planes y precios de cada herramienta cambian con frecuencia; verifícalos en su web oficial antes de usarla.</p>
+    </div>
+  </section>
+
   <div id="loadbox" class="loading"><span class="spin"></span>Cargando base de datos de 32,193 revistas…</div>
 
   <footer>
@@ -489,11 +522,14 @@ footer a{color:var(--brand)}
         <a href="https://orcid.org/0000-0002-2896-1407" target="_blank" rel="noopener">ORCID 0000-0002-2896-1407</a><br>
         <a href="https://www.scopus.com/authid/detail.uri?authorId=57204457871" target="_blank" rel="noopener">Scopus ID 57204457871</a><br>
         <a href="https://investigaciontau.com/cursos-online/" target="_blank" rel="noopener">🎓 investigaciontau.com/cursos-online</a><br>
-        <a href="https://www.youtube.com/@JoshuanJBarboza" target="_blank" rel="noopener">▶️ Canal de YouTube</a>
+        <a href="https://www.youtube.com/@JoshuanJBarboza" target="_blank" rel="noopener">▶️ Canal de YouTube</a><br>
+        <a href="https://jbarbozameca.github.io/youtubetau/" target="_blank" rel="noopener">⭐ Aula Virtual para miembros Premium</a><br>
+        <a href="https://www.youtube.com/channel/UC0Jl5Rhf4zVNveGqFGozD_w/join" target="_blank" rel="noopener">➕ Hazte miembro del canal</a>
       </div>
       <div>
         <b style="color:var(--ink)">Herramientas Tau</b><br>
         <a href="https://jbarbozameca.github.io/medicinabasadaenevidencia/#m-bin" target="_blank" rel="noopener">🧮 Calculadora de Medicina Basada en Evidencia</a><br>
+        <a href="#ia" onclick="goTab('ia');return false;">🤖 Banco de IA para Investigación</a><br>
         <a href="https://jbarbozameca.github.io/publicacionestau/" target="_blank" rel="noopener">📄 Publicaciones Tau</a><br>
         <a href="https://jbarbozameca.github.io/clinicaltrials/" target="_blank" rel="noopener">🧬 Simulador de Ensayos Clínicos</a><br>
         <a href="https://jbarbozameca.github.io/riskofbias/" target="_blank" rel="noopener">🚦 Evaluador de Riesgo de Sesgo</a><br>
@@ -588,6 +624,7 @@ function goTab(t){
   document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab===t));
   document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id==='panel-'+t));
   if(t==='mbe')loadMBE();
+  if(t==='ia')loadIA();
   window.scrollTo({top:document.getElementById('tabs').offsetTop-10,behavior:'smooth'});
 }
 
@@ -615,6 +652,25 @@ document.addEventListener('fullscreenchange',()=>{
   if(w)w.classList.toggle('fs',document.fullscreenElement===w);
 });
 if(location.hash==='#mbe')goTab('mbe');
+
+/* ========= BANCO DE IA EMBEBIDO (carga diferida) ========= */
+function loadIA(){
+  const f=document.getElementById('ia-frame');
+  if(!f||f.dataset.loaded)return;
+  f.dataset.loaded='1';
+  f.addEventListener('load',()=>{const ph=document.getElementById('ia-ph');if(ph)ph.style.display='none';});
+  f.src='https://jbarbozameca.github.io/bancoia/';
+}
+document.getElementById('ia-fs').addEventListener('click',()=>{
+  const w=document.getElementById('ia-wrap');
+  if(document.fullscreenElement){document.exitFullscreen();}
+  else if(w.requestFullscreen){w.requestFullscreen();}
+});
+document.addEventListener('fullscreenchange',()=>{
+  const w=document.getElementById('ia-wrap');
+  if(w)w.classList.toggle('fs',document.fullscreenElement===w);
+});
+if(location.hash==='#ia'||location.hash==='#bancoia')goTab('ia');
 
 /* ================= HELPERS ================= */
 const STOP=new Set(('a an and are as at be by for from in into is it of on or that the to with study studies effect effects analysis analyses review reviews systematic meta trial trials randomized randomised controlled clinical efficacy safety effectiveness permanent medication versus vs outcome outcomes patient patients adult adults treatment treatments management comparison comparative prospective retrospective cohort placebo blind multicenter multicentre pilot evaluation assessment impact role using based associated association among during after before new novel approach case report reports series protocol results result methods method aim aims objective objectives background conclusion conclusions el la los las de del y en un una para con sobre entre efecto efectos revision sistematica ensayo estudio pacientes tratamiento').split(' '));
